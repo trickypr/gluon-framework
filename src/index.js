@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url';
 
 import Chromium from './browser/chromium.js';
 import Firefox from './browser/firefox.js';
+import Gecko from './browser/gecko.js'
 
 import LocalServer from './lib/local/server.js';
 
@@ -197,7 +198,7 @@ const startBrowser = async (url, { windowSize, forceBrowser, forceEngine }) => {
   const closeHandlers = [];
   if (openingLocal && browserType === 'firefox') closeHandlers.push(await LocalServer({ localUrl, url: basePath }));
 
-  const Window = await (browserType === 'firefox' ? Firefox : Chromium)({
+  const Window = await (browserType === 'firefox' ? Gecko : Chromium)({
     dataPath,
     browserPath
   }, {
